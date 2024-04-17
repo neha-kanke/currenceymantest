@@ -19,8 +19,8 @@ export class AppComponent implements OnInit {
       .subscribe((res: any) => {
         this.currencyarr = res
       })
-    // this.basecodefunction()
-    // this.targetcodefunction()
+    this.basecodefunction()
+    this.targetcodefunction()
 
 
 
@@ -47,11 +47,14 @@ export class AppComponent implements OnInit {
         }
       })
   }
+
+
+
   createcuurnecyform() {
     this.currencyform = new FormGroup({
       base_code1: new FormControl(null, [Validators.required]),
-      amount: new FormControl(null, [Validators.required]),
-      target_code: new FormControl(null, [Validators.required]),
+      amount: new FormControl({value:null,disabled:true}, [Validators.required]),
+      target_code: new FormControl([Validators.required]),
       convertcurrey: new FormControl(null, [Validators.required]),
     })
   }
@@ -62,7 +65,7 @@ export class AppComponent implements OnInit {
 
   oncuurntvalu() {
     console.log(this.currencyform.value);
-    if (this.currencyform.valid) {
+   
       let newobj = this.currencyform.value
       this.currencyservice.getexchagecurrency(newobj)
         .subscribe((res: any) => {
@@ -83,4 +86,4 @@ export class AppComponent implements OnInit {
 
   }
 
-}
+
